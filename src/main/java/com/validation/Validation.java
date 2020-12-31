@@ -11,12 +11,19 @@ import java.util.Map;
 
 
 public class Validation {
-
+    private static volatile Validation validationInstance;
+    
     private final Map<Class, Validator> validatorMap = new HashMap<>();
 
-    public Validation(){
+    private Validation(){
         validatorMap.put(NotEmpty.class, ValidatorFactory.getEmptyObject());
         validatorMap.put(DateFormat.class, ValidatorFactory.getDateObject());
+    }
+    public static synchronized Validation getInstance() {
+        if (validationInstance == null) {
+            validationInstance = new Validation();
+        }
+        return validationInstance;
     }
 
     public void validate(Object object) {
@@ -29,14 +36,15 @@ public class Validation {
     }
     public void validate(Object object, Field field) {
         Annotation[] annotations= field.getAnnotations();
+
+
         for (Annotation annotation : annotations){
             if(validatorMap.containsKey(annotation.annotationType())){
-
                 try{
                     Object value = getMethodGet(object, field).invoke(object);
                     validatorMap.get(annotation.annotationType()).valid(field, value);
                 }catch (Exception e){
-
+                    System.out.println(e);
                 }
 
 

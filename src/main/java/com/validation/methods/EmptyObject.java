@@ -1,15 +1,20 @@
 package com.validation.methods;
 
 import com.validation.Validator;
-
+import com.validation.ValidatorException;
 import java.lang.reflect.Field;
 
 public class EmptyObject implements Validator {
 
-    public void valid(Field field, Object value) {
-        System.out.println("=====Empty=======");
-        System.out.println("NameField = " + field.getName());
-        System.out.println("value = " + value);
-        System.out.println("================");
+
+    @Override
+    public boolean valid(Field field, Object value) throws ValidatorException {
+        if(value==null){
+            throw new ValidatorException("Field '" + field.getName() + "' is null");
+        }
+        if(value.toString().isEmpty()){
+            throw new ValidatorException("Field '" + field.getName() + "' is empty");
+        }
+        return true;
     }
 }

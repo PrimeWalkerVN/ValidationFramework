@@ -6,9 +6,9 @@ import com.validation.annotations.NotEmpty;
 public class Test {
 
     @NotEmpty
-    private String name="123";
+    private String name="";
 
-    @DateFormat(format="DD?MM?YY")
+    @DateFormat(format="DD/MM/YY")
     private String date = "12/02/2020";
 
     public String getName() {

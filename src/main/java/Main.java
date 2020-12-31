@@ -4,7 +4,7 @@ import com.validation.annotations.NotEmpty;
 
 public class Main {
     public static void main(String[] args) {
-        Validation validation = new Validation();
+        Validation validation = Validation.getInstance();
         Test test = new Test();
         validation.validate(test);
 
