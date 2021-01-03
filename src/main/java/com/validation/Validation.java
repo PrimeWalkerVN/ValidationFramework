@@ -1,5 +1,6 @@
 package com.validation;
 
+import com.validation.annotations.Regex;
 import com.validation.exceptions.ObjectException;
 import com.validation.exceptions.ResponseException;
 import com.validation.exceptions.ValidationException;
@@ -29,6 +30,7 @@ public class Validation {
         this.validationErrors = new ValidationException();
         validatorMap.put(NotEmpty.class, ValidatorFactory.getEmptyMethod());
         validatorMap.put(DateFormat.class, ValidatorFactory.getDateMethod());
+        validatorMap.put(Regex.class, ValidatorFactory.getRegexMethod());
     }
     public static synchronized Validation getInstance() {
         if (validationInstance == null) {
@@ -60,6 +62,7 @@ public class Validation {
                     try {
                         validatorMap.get(annotation.annotationType()).valid(field, value);
                     }catch (ValidatorException e){
+                        System.out.println(e);
                         validationErrors.addError(object, field, e);
                     }
                 }catch (ValidatorException | IllegalAccessException | InvocationTargetException e){

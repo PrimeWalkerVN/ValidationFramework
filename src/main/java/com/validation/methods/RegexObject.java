@@ -9,11 +9,13 @@ import java.lang.reflect.Field;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RegexMethod implements Validator {
+public class RegexObject implements Validator {
     @Override
     public boolean valid(Field field, Object value) throws ValidatorException {
-        Annotation [] annotations = field.getDeclaredAnnotations();
-        if (annotations.length>0){
+
+        Annotation []annotations = field.getDeclaredAnnotations();
+
+        if (annotations[0] instanceof Regex){
             Regex regex = (Regex) annotations[0];
             Pattern pattern = Pattern.compile(regex.pattern(), Pattern.CASE_INSENSITIVE);
             Matcher matcher = pattern.matcher(value.toString());
@@ -21,10 +23,12 @@ public class RegexMethod implements Validator {
             if(matchFound) {
                 return true;
             } else {
-                throw new ValidatorException("Field " + field.getName() + " is not match");
+                throw new ValidatorException("Field '" + field.getName() + "' is not match");
             }
-        }else {
-            throw new ValidatorException("Can't find pattern");
+        }else{
+            throw new ValidatorException("");
         }
+
     }
+
 }
