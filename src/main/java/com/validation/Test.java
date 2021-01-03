@@ -1,6 +1,7 @@
 package com.validation;
 
 import com.validation.annotations.DateFormat;
+import com.validation.annotations.IsBlank;
 import com.validation.annotations.IsNumber;
 import com.validation.annotations.NotEmpty;
 
@@ -17,6 +18,10 @@ public class Test {
     @IsNumber
     private String cac = null;
 
+    @IsNumber
+    @IsBlank
+    private String cac2 = "";
+
     public String getName() {
         return name;
     }
@@ -27,6 +32,10 @@ public class Test {
 
     public String getCac() {
         return cac;
+    }
+
+    public String getCac2() {
+        return cac2;
     }
     //    @NotEmpty
 //    private String address;
