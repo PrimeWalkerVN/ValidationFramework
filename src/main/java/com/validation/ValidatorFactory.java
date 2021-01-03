@@ -1,6 +1,8 @@
 package com.validation;
 
 import com.validation.methods.*;
+import com.validation.methods.Ranges.RangeLengthMethod;
+import com.validation.methods.Ranges.RangeValueMethod;
 
 public class ValidatorFactory {
 

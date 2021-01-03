@@ -1,26 +1,15 @@
 package com.validation;
 
-
-import com.validation.annotations.IsBlank;
-import com.validation.annotations.IsNumber;
-
-import com.validation.annotations.Message;
-import com.validation.annotations.Regex;
-
-import com.validation.exceptions.ObjectException;
+import com.validation.annotations.*;
 import com.validation.exceptions.ResponseException;
 import com.validation.exceptions.ValidationException;
-import com.validation.annotations.DateFormat;
-import com.validation.annotations.NotEmpty;
 import com.validation.exceptions.ValidatorException;
 
 import java.lang.annotation.Annotation;
-import java.lang.module.ResolutionException;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -36,12 +25,11 @@ public class Validation {
         this.validationErrors = new ValidationException();
         validatorMap.put(NotEmpty.class, ValidatorFactory.getEmptyMethod());
         validatorMap.put(DateFormat.class, ValidatorFactory.getDateMethod());
-
         validatorMap.put(IsNumber.class, ValidatorFactory.getNumberMethod());
         validatorMap.put(IsBlank.class, ValidatorFactory.getBlankMethod());
-
         validatorMap.put(Regex.class, ValidatorFactory.getRegexMethod());
-
+        validatorMap.put(RangeLength.class, ValidatorFactory.getRangeLengthMethod());
+        validatorMap.put(RangeValue.class, ValidatorFactory.getRangeValueMethod());
     }
     public static synchronized Validation getInstance() {
         if (validationInstance == null) {
