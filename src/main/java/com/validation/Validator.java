@@ -1,5 +1,7 @@
 package com.validation;
 
+import com.validation.exceptions.ValidatorException;
+
 import java.lang.reflect.Field;
 
 public interface Validator {

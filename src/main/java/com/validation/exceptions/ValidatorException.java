@@ -1,4 +1,4 @@
-package com.validation;
+package com.validation.exceptions;
 
 public class ValidatorException extends RuntimeException{
 

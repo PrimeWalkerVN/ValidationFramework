@@ -1,7 +1,7 @@
 package com.validation.methods;
 
 import com.validation.Validator;
-import com.validation.ValidatorException;
+import com.validation.exceptions.ValidatorException;
 
 import java.lang.reflect.Field;
 
