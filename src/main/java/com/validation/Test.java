@@ -12,7 +12,7 @@ public class Test {
     @DateFormat(format="DD/MM/YY")
     private String date = "12/02/2020";
 
-    @Regex(pattern = "[0-9]")
+    @Regex(pattern = "[0-9]", message = "hihihi")
     private String regex = "aggg";
 
     public String getName() {
