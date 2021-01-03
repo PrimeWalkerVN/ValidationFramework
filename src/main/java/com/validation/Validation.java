@@ -1,12 +1,9 @@
 package com.validation;
 
-import com.validation.annotations.Message;
-import com.validation.annotations.Regex;
+import com.validation.annotations.*;
 import com.validation.exceptions.ObjectException;
 import com.validation.exceptions.ResponseException;
 import com.validation.exceptions.ValidationException;
-import com.validation.annotations.DateFormat;
-import com.validation.annotations.NotEmpty;
 import com.validation.exceptions.ValidatorException;
 
 import java.lang.annotation.Annotation;
@@ -32,6 +29,8 @@ public class Validation {
         validatorMap.put(NotEmpty.class, ValidatorFactory.getEmptyMethod());
         validatorMap.put(DateFormat.class, ValidatorFactory.getDateMethod());
         validatorMap.put(Regex.class, ValidatorFactory.getRegexMethod());
+        validatorMap.put(RangeLength.class, ValidatorFactory.getRangeLengthMethod());
+        validatorMap.put(RangeValue.class, ValidatorFactory.getRangeValueMethod());
     }
     public static synchronized Validation getInstance() {
         if (validationInstance == null) {
