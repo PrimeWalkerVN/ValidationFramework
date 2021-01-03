@@ -1,5 +1,6 @@
 package com.validation;
 
+import com.validation.annotations.Message;
 import com.validation.annotations.Regex;
 import com.validation.exceptions.ObjectException;
 import com.validation.exceptions.ResponseException;

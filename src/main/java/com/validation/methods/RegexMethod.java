@@ -13,7 +13,7 @@ public class RegexMethod implements Validator {
     @Override
     public boolean valid(Field field, Object value) throws ValidatorException {
         Annotation [] annotations = field.getDeclaredAnnotations();
-        if (annotations.length>0){
+        if (annotations.length > 0){
             Regex regex = (Regex) annotations[0];
             Pattern pattern = Pattern.compile(regex.pattern(), Pattern.CASE_INSENSITIVE);
             Matcher matcher = pattern.matcher(value.toString());
@@ -21,7 +21,7 @@ public class RegexMethod implements Validator {
             if(matchFound) {
                 return true;
             } else {
-                throw new ValidatorException("Field " + field.getName() + " is not match");
+                throw new ValidatorException( regex.message() != null ? regex.message() : "Field " + field.getName() + " is not match");
             }
         }else {
             throw new ValidatorException("Can't find pattern");
