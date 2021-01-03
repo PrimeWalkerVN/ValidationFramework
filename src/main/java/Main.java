@@ -10,8 +10,6 @@ public class Main {
         Test test = new Test();
         Test2 test2 = new Test2();
         ResponseException err = validation.validate(test);
-        System.out.println(err);
 
     }
-
 }
