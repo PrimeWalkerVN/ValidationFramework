@@ -8,6 +8,9 @@ import java.lang.reflect.Field;
 public class NullMethod implements Validator {
     @Override
     public boolean valid(Field field, Object value) throws ValidatorException {
-        return false;
+        if(value==null){
+            throw new ValidatorException("Field '" + field.getName() + "' is null");
+        }
+        return true;
     }
 }
