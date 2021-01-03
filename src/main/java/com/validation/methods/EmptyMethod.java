@@ -4,7 +4,7 @@ import com.validation.Validator;
 import com.validation.exceptions.ValidatorException;
 import java.lang.reflect.Field;
 
-public class EmptyObject implements Validator {
+public class EmptyMethod implements Validator {
 
 
     @Override

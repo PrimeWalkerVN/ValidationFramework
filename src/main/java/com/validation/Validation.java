@@ -27,8 +27,8 @@ public class Validation {
 
     private Validation(){
         this.validationErrors = new ValidationException();
-        validatorMap.put(NotEmpty.class, ValidatorFactory.getEmptyObject());
-        validatorMap.put(DateFormat.class, ValidatorFactory.getDateObject());
+        validatorMap.put(NotEmpty.class, ValidatorFactory.getEmptyMethod());
+        validatorMap.put(DateFormat.class, ValidatorFactory.getDateMethod());
     }
     public static synchronized Validation getInstance() {
         if (validationInstance == null) {
