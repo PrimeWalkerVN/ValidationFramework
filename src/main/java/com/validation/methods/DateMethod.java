@@ -5,7 +5,7 @@ import com.validation.exceptions.ValidatorException;
 
 import java.lang.reflect.Field;
 
-public class DateObject implements Validator {
+public class DateMethod implements Validator {
 
     @Override
     public boolean valid(Field field, Object value) throws ValidatorException {
