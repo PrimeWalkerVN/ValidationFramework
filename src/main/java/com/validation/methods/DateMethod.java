@@ -16,9 +16,15 @@ public class DateMethod implements Validator {
             DateFormat dateFormat = (DateFormat) annotations[0];
             String format = dateFormat.format();
             String seperator = "[^\\da-zA-Z]";
+            String letters = "[\\da-zA-Z]";
             String[] monthsArray = {"January", "February", "March", "April",
                 "May", "June", "July", "August", "September", "October", "November", "December"};
             int[] daysOfMonths = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+            String formatSeperator = String.join("", format.split(letters));
+            String valueSeperator = String.join("", value.toString().split(letters));
+            if(!formatSeperator.equals(valueSeperator)) {
+                throw new ValidatorException(String.format("Field '%s' is invalid date", field.getName()));
+            }
             String[] parsedDate = value.toString().split(seperator);
             String[] parseFormat = format.split(seperator);
 
