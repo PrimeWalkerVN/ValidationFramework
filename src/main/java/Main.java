@@ -1,5 +1,6 @@
 import com.validation.*;
 import com.validation.annotations.NotEmpty;
+import com.validation.builder.ValidationBuilder;
 import com.validation.exceptions.ResponseException;
 
 public class Main {
@@ -11,5 +12,12 @@ public class Main {
         Test3 test3 = new Test3();
         ResponseException err = validation.validate(test);
 
+        // builder
+        ObjectValidation objectValidation = new ValidationBuilder().maxLength(5)
+                    .minLength(1).notEmpty().build();
+        String a = "";
+        validation.setValidationStrategy(objectValidation);
+        validation.validate(a);
     }
+
 }

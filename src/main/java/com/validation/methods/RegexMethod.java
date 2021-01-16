@@ -12,6 +12,14 @@ import java.util.regex.Pattern;
 public class RegexMethod implements Validator {
 
     private Pattern pattern = null;
+
+    public RegexMethod() {
+    }
+
+    public RegexMethod(Pattern pattern) {
+        this.pattern = pattern;
+    }
+
     @Override
     public boolean valid(Field field, Object value) throws ValidatorException {
 

@@ -19,7 +19,6 @@ public class AnnotationValidation implements ValidationStrategy{
 
     ValidationException validationErrors;
 
-
     public AnnotationValidation(){
         this.validationErrors = new ValidationException();
         validatorMap.put(NotEmpty.class, ValidatorFactory.getEmptyMethod());

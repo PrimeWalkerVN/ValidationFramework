@@ -27,7 +27,7 @@ public class MinLengthMethod implements Validator {
 
     protected boolean min(Object value, double target) {
         if(value==null) return false;
-        double val = Double.parseDouble(value.toString());
+        double val = value.toString().length();
         return val >= target;
     }
 }
