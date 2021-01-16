@@ -2,16 +2,12 @@ package com.validation;
 
 
 import com.validation.annotations.*;
-import com.validation.customs.ShiroValidator;
-import com.validation.exceptions.ValidatorException;
-import com.validation.methods.CustomMethod;
-
-import java.lang.reflect.Field;
+import com.validation.customs.PrimeNumberValidation;
 
 
 public class Test {
-
     @NotEmpty
+    @RangeLength(min = 5)
     private String name="";
 
     @DateFormat(format="DD/MM/YY")
@@ -28,22 +24,26 @@ public class Test {
     private String regex = "aggg";
 
 
-
-
-
-
-    @CustomValidation(validatedBy = {ShiroValidator.class})
-    private String testsji;
-
-
-
-    public String getTestsji() {
-        return testsji;
+    public int getSoNguyenTo() {
+        return soNguyenTo;
     }
 
-    public void setTestsji(String testsji) {
-        this.testsji = testsji;
+    public void setSoNguyenTo(int soNguyenTo) {
+        this.soNguyenTo = soNguyenTo;
     }
+
+    @IsNumber
+    @CustomValidation(validatedBy = PrimeNumberValidation.class)
+    private int soNguyenTo = 98;
+
+
+
+
+
+    @RangeValue(min = 20, max = 100)
+    private double age = 99;
+
+
 
     public String getName() {
         return name;
@@ -69,6 +69,11 @@ public class Test {
 
     public String getRegex() {
         return regex;
+    }
+
+
+    public double getAge() {
+        return age;
     }
 
 }

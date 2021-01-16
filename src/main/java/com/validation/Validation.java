@@ -1,10 +1,11 @@
 package com.validation;
 
 
+
+
+
+
 import com.validation.annotations.*;
-
-
-
 
 import com.validation.exceptions.ObjectException;
 import com.validation.exceptions.ResponseException;
@@ -42,6 +43,8 @@ public class Validation {
 
         validatorMap.put(Regex.class, ValidatorFactory.getRegexMethod());
 
+        validatorMap.put(RangeLength.class, ValidatorFactory.getRangeLengthMethod());
+        validatorMap.put(RangeValue.class, ValidatorFactory.getRangeValueMethod());
 
     }
     public static synchronized Validation getInstance() {
@@ -76,10 +79,12 @@ public class Validation {
                     }catch (ValidatorException e){
                         System.out.println(e);
                         validationErrors.addError(object, field, e);
+                    } catch (NoSuchMethodException | InstantiationException | ClassNotFoundException e) {
+                        e.printStackTrace();
                     }
-                }catch (ValidatorException | IllegalAccessException | InvocationTargetException e){
-                    System.out.println(e);
-                } 
+                }catch (IllegalAccessException | InvocationTargetException e){
+                    e.printStackTrace();
+                }
             }
         }
     }
