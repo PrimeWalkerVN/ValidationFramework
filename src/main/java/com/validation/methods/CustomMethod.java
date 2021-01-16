@@ -31,7 +31,8 @@ public class CustomMethod implements Validator {
                         try{
                             method.invoke(cls.newInstance(),field,value);
                         }catch (InvocationTargetException e){
-                            System.out.println(e.getTargetException());
+
+                            throw new ValidatorException(e.getTargetException().getMessage());
                         } catch (IllegalAccessException e) {
                             e.printStackTrace();
                         } catch (InstantiationException e) {
