@@ -31,7 +31,7 @@ public class RegexMethod implements Validator {
                 try {
                     valid(value);
                 }catch (ValidatorException e){
-                    throw new ValidatorException("Field '" + field.getName() + "' " + e.getMessage());
+                    throw new ValidatorException(!regex.message().isBlank() ? regex.message() :"Field '" + field.getName() + "' " + e.getMessage());
                 }
             }
         }

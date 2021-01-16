@@ -6,26 +6,32 @@ import java.util.*;
 public class ObjectException {
    private final Object object;
 
-   private final Map<Field, List<ValidatorException>> errors = new HashMap<>();
+   private final Map<String, List<ValidatorException>> errors = new HashMap<>();
 
    ObjectException(Object o){
        this.object = o;
 
    }
 
+   public boolean hasError() {
+       return !errors.isEmpty();
+   }
+
+
     public Object getObject() {
         return object;
     }
 
-    public Map<Field, List<ValidatorException>> getErrors() {
+    public Map<String, List<ValidatorException>> getAllErrors() {
         return errors;
     }
 
-    public List<ValidatorException> getErrors(Field field){
+
+    public List<ValidatorException> getErrors(String field){
        return errors.get(field);
     }
 
-    public void addError(Field field, ValidatorException e){
+    public void addError(String field, ValidatorException e){
        if(errors.containsKey(field)){
            errors.get(field).add(e);
        }else {

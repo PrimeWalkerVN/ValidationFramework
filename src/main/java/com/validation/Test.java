@@ -25,6 +25,7 @@ public class Test {
 
     @RangeValue(min = 20, max = 100)
     private final double age = 99;
+
     @IsNumber
     @CustomValidation(validatedBy = PrimeNumberValidation.class)
     private int soNguyenTo = 98;

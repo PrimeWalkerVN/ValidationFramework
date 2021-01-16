@@ -12,4 +12,5 @@ import java.lang.annotation.Target;
 public @interface CustomValidation {
 
     Class<? extends Validator> validatedBy();
+    String message() default "";
 }
