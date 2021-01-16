@@ -5,6 +5,11 @@ import com.validation.annotations.*;
 import com.validation.customs.PrimeNumberValidation;
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 5ee2fecfca38471c407dbd996d690d2d9f5e50a0
 public class Test {
     @NotEmpty
     @RangeLength(min = 5)
@@ -23,6 +28,8 @@ public class Test {
     @Regex(pattern = "[0-9]", message = "hihihi")
     private String regex = "aggg";
 
+    @RangeValue(min = 20, max = 100)
+    private double age = 99;
 
     public int getSoNguyenTo() {
         return soNguyenTo;
@@ -71,7 +78,10 @@ public class Test {
         return regex;
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5ee2fecfca38471c407dbd996d690d2d9f5e50a0
     public double getAge() {
         return age;
     }
