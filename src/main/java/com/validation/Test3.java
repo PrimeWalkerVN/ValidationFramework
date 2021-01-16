@@ -5,7 +5,7 @@ import com.validation.annotations.NotEmpty;
 public class Test3 {
 
     @NotEmpty
-   private String name = null;
+    private String name = null;
 
     public String getName() {
         return name;
