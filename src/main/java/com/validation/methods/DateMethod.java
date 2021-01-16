@@ -20,7 +20,7 @@ public class DateMethod implements Validator {
             try {
                 valid(value);
             }catch (ValidatorException e){
-                throw new ValidatorException("Field '" + field.getName() + "' " + e.getMessage());
+                throw new ValidatorException(!dateFormat.message().isBlank() ? dateFormat.message() : "Field '" + field.getName() + "' " + e.getMessage());
             }
         }else {
             throw new ValidatorException("Can't find pattern");
