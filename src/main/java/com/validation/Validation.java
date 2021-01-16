@@ -1,6 +1,11 @@
 package com.validation;
 
+
 import com.validation.annotations.*;
+
+
+
+
 import com.validation.exceptions.ObjectException;
 import com.validation.exceptions.ResponseException;
 import com.validation.exceptions.ValidationException;
@@ -28,9 +33,16 @@ public class Validation {
         this.validationErrors = new ValidationException();
         validatorMap.put(NotEmpty.class, ValidatorFactory.getEmptyMethod());
         validatorMap.put(DateFormat.class, ValidatorFactory.getDateMethod());
+
         validatorMap.put(IsNumber.class, ValidatorFactory.getNumberMethod());
         validatorMap.put(IsBlank.class, ValidatorFactory.getBlankMethod());
+
         validatorMap.put(CustomValidation.class, ValidatorFactory.getCustomMethod());
+
+
+        validatorMap.put(Regex.class, ValidatorFactory.getRegexMethod());
+
+
     }
     public static synchronized Validation getInstance() {
         if (validationInstance == null) {

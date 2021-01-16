@@ -1,11 +1,13 @@
 package com.validation;
 
+
 import com.validation.annotations.*;
 import com.validation.customs.ShiroValidator;
 import com.validation.exceptions.ValidatorException;
 import com.validation.methods.CustomMethod;
 
 import java.lang.reflect.Field;
+
 
 public class Test {
 
@@ -16,13 +18,15 @@ public class Test {
     private String date = "12/02/2020";
 
 
-
     @IsNumber
     private String cac = null;
 
     @IsNumber
     @IsBlank
     private String cac2 = "";
+    @Regex(pattern = "[0-9]", message = "hihihi")
+    private String regex = "aggg";
+
 
 
 
@@ -62,4 +66,9 @@ public class Test {
 
     //    @NotEmpty
 //    private String address;
+
+    public String getRegex() {
+        return regex;
+    }
+
 }
