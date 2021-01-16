@@ -32,91 +32,7 @@ public class DateMethod implements Validator {
             int convertYear = -1;
 
             for (int i = 0; i < parseFormat.length; i++){
-<<<<<<< HEAD
-                    switch (parseFormat[i]){
-                        case "MM":
-                            try {
-                                int data = Integer.parseInt(parsedDate[i]);
-                                if(parsedDate[i].length() == 2) {
-                                    convertMonth = data;
-                                } else {
-                                    throw new ValidatorException(String.format("Field '%s' is invalid date", field.getName()));
-                                }
-                            } catch (NumberFormatException e) {
-                                throw new ValidatorException(String.format("Field '%s' is invalid date", field.getName()));
-                            }
-                            break;
-                        case "DD":
-                            try {
-                                int data = Integer.parseInt(parsedDate[i]);
-                                if(parsedDate[i].length() == 2) {
-                                    convertDay = data;
-                                } else {
-                                    throw new ValidatorException(String.format("Field '%s' is invalid date", field.getName()));
-                                }
-                            } catch (NumberFormatException e) {
-                                throw new ValidatorException(String.format("Field '%s' is invalid date", field.getName()));
-                            }
-                            break;
-                        case "YY": case "YYYY":
-                            try {
-                                convertYear = Integer.parseInt(parsedDate[i]);
-                            } catch (NumberFormatException e) {
-                                throw new ValidatorException(String.format("Field '%s' is invalid date", field.getName()));
-                            }
-                            break;
-                        case "Month":
-                            for(int indexMonth = 0; indexMonth <= monthsArray.length; indexMonth++) {
-                                if(indexMonth==monthsArray.length){
-                                    throw new ValidatorException(String.format("Field '%s' is invalid date", field.getName()));
-                                }
-                                String monthName = monthsArray[indexMonth];
-                                if(monthName.equals(parsedDate[i])){
-                                    convertMonth = indexMonth + 1;
-                                    break;
-                                }
-                            }
-                            break;
-                        case "Mon":
-                            for(int indexMonth = 0; indexMonth <= monthsArray.length; indexMonth++) {
-                                if(indexMonth == monthsArray.length){
-                                    throw new ValidatorException(String.format("Field '%s' is invalid date", field.getName()));
-                                }
-                                String monthName = monthsArray[indexMonth];
-                                if(monthName.substring(0,3).equals(parsedDate[i])){
-                                    convertMonth = indexMonth + 1;
-                                    break;
-                                }
-                            }
-                            break;
-                        case "D":
-                            try {
-                                int data = Integer.parseInt(parsedDate[i]);
-                                if(Integer.toString(data).equals(parsedDate[i])) {
-                                    convertDay = data;
-                                } else {
-                                    throw new ValidatorException("Field '" + field.getName() + "' is invalid date");
-                                }
-                            } catch (NumberFormatException e) {
-                                throw new ValidatorException("Field '" + field.getName() + "' is invalid date");
-                            }
-                            break;
-                        case "M":
-                            try {
-                                int data = Integer.parseInt(parsedDate[i]);
-                                if(Integer.toString(data).equals(parsedDate[i])) {
-                                    convertMonth = data;
-                                } else {
-                                    throw new ValidatorException("Field '" + field.getName() + "' is invalid date");
-                                }
-                            } catch (NumberFormatException e) {
-                                throw new ValidatorException("Field '" + field.getName() + "' is invalid date");
-                            }
-                            break;
-                        default:
-                            throw new IllegalStateException("Unexpected value: " + parseFormat[i]);
-                    }
-=======
+
                 switch (parseFormat[i]){
                     case "MM":
                         try {
@@ -200,7 +116,7 @@ public class DateMethod implements Validator {
                     default:
                         throw new IllegalStateException("Unexpected value: " + parseFormat[i]);
                 }
->>>>>>> 5ee2fecfca38471c407dbd996d690d2d9f5e50a0
+
             }
 
             if(convertDay * convertMonth * convertYear < 0) {

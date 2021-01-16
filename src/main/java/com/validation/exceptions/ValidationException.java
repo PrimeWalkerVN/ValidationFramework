@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ValidationException{
-    private Map<Object, ObjectException> errorsMap;
+    private final Map<Object, ObjectException> errorsMap;
 
     public ValidationException(){
         errorsMap = new HashMap<>();
