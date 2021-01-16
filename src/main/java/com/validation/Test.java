@@ -1,9 +1,11 @@
 package com.validation;
 
-import com.validation.annotations.DateFormat;
-import com.validation.annotations.IsBlank;
-import com.validation.annotations.IsNumber;
-import com.validation.annotations.NotEmpty;
+import com.validation.annotations.*;
+import com.validation.customs.ShiroValidator;
+import com.validation.exceptions.ValidatorException;
+import com.validation.methods.CustomMethod;
+
+import java.lang.reflect.Field;
 
 public class Test {
 
@@ -22,6 +24,23 @@ public class Test {
     @IsBlank
     private String cac2 = "";
 
+
+
+
+
+    @CustomValidation(validatedBy = {ShiroValidator.class})
+    private String testsji;
+
+
+
+    public String getTestsji() {
+        return testsji;
+    }
+
+    public void setTestsji(String testsji) {
+        this.testsji = testsji;
+    }
+
     public String getName() {
         return name;
     }
@@ -37,6 +56,10 @@ public class Test {
     public String getCac2() {
         return cac2;
     }
+
+
+
+
     //    @NotEmpty
 //    private String address;
 }

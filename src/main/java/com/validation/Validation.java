@@ -1,12 +1,9 @@
 package com.validation;
 
-import com.validation.annotations.IsBlank;
-import com.validation.annotations.IsNumber;
+import com.validation.annotations.*;
 import com.validation.exceptions.ObjectException;
 import com.validation.exceptions.ResponseException;
 import com.validation.exceptions.ValidationException;
-import com.validation.annotations.DateFormat;
-import com.validation.annotations.NotEmpty;
 import com.validation.exceptions.ValidatorException;
 
 import java.lang.annotation.Annotation;
@@ -33,6 +30,7 @@ public class Validation {
         validatorMap.put(DateFormat.class, ValidatorFactory.getDateMethod());
         validatorMap.put(IsNumber.class, ValidatorFactory.getNumberMethod());
         validatorMap.put(IsBlank.class, ValidatorFactory.getBlankMethod());
+        validatorMap.put(CustomValidation.class, ValidatorFactory.getCustomMethod());
     }
     public static synchronized Validation getInstance() {
         if (validationInstance == null) {
