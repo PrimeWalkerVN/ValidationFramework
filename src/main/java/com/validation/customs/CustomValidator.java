@@ -8,7 +8,12 @@ import java.lang.reflect.InvocationTargetException;
 
 public class CustomValidator implements Validator {
     @Override
-    public boolean valid(Field field, Object value) throws ValidatorException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException {
+    public boolean valid(Field field, Object value) throws ValidatorException{
+        return false;
+    }
+
+    @Override
+    public boolean valid(Object value) {
         return false;
     }
 }

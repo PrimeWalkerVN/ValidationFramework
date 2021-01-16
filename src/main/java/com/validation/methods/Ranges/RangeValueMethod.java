@@ -21,4 +21,5 @@ public class RangeValueMethod extends RangeComparator {
         double val = Double.parseDouble(value.toString());
         return val <= target;
     }
+
 }

@@ -21,4 +21,5 @@ public class RangeLengthMethod extends RangeComparator {
         String string = value.toString();
         return (string.length() <= target);
     }
+
 }

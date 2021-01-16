@@ -54,11 +54,9 @@ public class AnnotationValidation implements ValidationStrategy{
                     Object value = getMethodGet(object, field).invoke(object);
                     try {
                         validatorMap.get(annotation.annotationType()).valid(field, value);
-                    }catch (ValidatorException e){
+                    }catch (ValidatorException e) {
                         System.out.println(e);
                         validationErrors.addError(object, field, e);
-                    } catch (NoSuchMethodException | InstantiationException | ClassNotFoundException e) {
-                        e.printStackTrace();
                     }
                 }catch (ValidatorException | IllegalAccessException | InvocationTargetException e){
                     System.out.println(e);

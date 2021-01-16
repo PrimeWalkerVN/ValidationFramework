@@ -6,5 +6,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
 public interface Validator {
-    boolean valid(Field field, Object value) throws ValidatorException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException;
+    boolean valid(Field field, Object value) throws ValidatorException;
+    boolean valid(Object value);
+
 }

@@ -9,12 +9,24 @@ public class EmptyMethod implements Validator {
 
     @Override
     public boolean valid(Field field, Object value) throws ValidatorException {
+        try{
+            valid(value);
+        }catch (ValidatorException e){
+            throw new ValidatorException("Field '" + field.getName() + "' " + e.getMessage());
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean valid(Object value) throws ValidatorException {
         if(value==null){
-            throw new ValidatorException("Field '" + field.getName() + "' is null");
+            throw new ValidatorException("is null");
         }
         if(value.toString().isEmpty()){
-            throw new ValidatorException("Field '" + field.getName() + "' is empty");
+            throw new ValidatorException("is empty");
         }
         return true;
     }
+
 }

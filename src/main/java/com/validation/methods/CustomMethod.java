@@ -13,7 +13,7 @@ import java.lang.reflect.Method;
 
 public class CustomMethod implements Validator {
     @Override
-    public boolean valid(Field field, Object value) throws ValidatorException, NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException, ClassNotFoundException {
+    public boolean valid(Field field, Object value) throws ValidatorException {
         if (value == null) {
             throw new ValidatorException("Field '" + field.getName() + "' is null");
         }
@@ -32,6 +32,10 @@ public class CustomMethod implements Validator {
                             method.invoke(cls.newInstance(),field,value);
                         }catch (InvocationTargetException e){
                             System.out.println(e.getTargetException());
+                        } catch (IllegalAccessException e) {
+                            e.printStackTrace();
+                        } catch (InstantiationException e) {
+                            e.printStackTrace();
                         }
                         break;
                     }
@@ -40,6 +44,11 @@ public class CustomMethod implements Validator {
         }
         return true;
 
+    }
+
+    @Override
+    public boolean valid(Object value) {
+        return false;
     }
 
 }

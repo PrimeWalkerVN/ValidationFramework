@@ -9,16 +9,18 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 
 abstract class RangeComparator implements Validator {
+
     @Override
     public boolean valid(Field field, Object value) throws ValidatorException {
-        if (value == null) {
-            throw new ValidatorException("Field '" + field.getName() + "' is null");
-        }
+
         Annotation[] annotations = field.getAnnotations();
         if (0 == annotations.length) {
             return false;
         }
         for (Annotation annotation : annotations) {
+            if (value == null) {
+                throw new ValidatorException("Field '" + field.getName() + "' is null");
+            }
             if (RangeLength.class.equals(annotation.annotationType()) ) {
                 RangeLength range = (RangeLength) annotation;
                 if (min(value, range.min()) && max(value, range.max())) {
@@ -43,6 +45,10 @@ abstract class RangeComparator implements Validator {
         return false;
     }
 
+    @Override
+    public boolean valid(Object value) {
+        return false;
+    }
 
     protected abstract boolean min(Object value, double target);
 
