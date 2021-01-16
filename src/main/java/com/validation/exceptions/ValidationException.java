@@ -19,7 +19,6 @@ public class ValidationException{
         }else{
             errorsMap.put(o, new ObjectException(o));
         }
-        return;
     }
 
     public ResponseException  getErrors(Object o){
@@ -31,7 +30,7 @@ public class ValidationException{
         return null;
     }
 
-    public void addError(Object o, Field field, ValidatorException e) {
+    public void addError(Object o, String field, ValidatorException e) {
         if (!errorsMap.containsKey(o)) {
             errorsMap.put(o, new ObjectException(o));
         }

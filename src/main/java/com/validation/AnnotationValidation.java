@@ -56,7 +56,7 @@ public class AnnotationValidation implements ValidationStrategy{
                         validatorMap.get(annotation.annotationType()).valid(field, value);
                     }catch (ValidatorException e) {
                         System.out.println(e);
-                        validationErrors.addError(object, field, e);
+                        validationErrors.addError(object, field.getName(), e);
                     }
                 }catch (ValidatorException | IllegalAccessException | InvocationTargetException e){
                     System.out.println(e);
