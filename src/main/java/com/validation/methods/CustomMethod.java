@@ -29,12 +29,15 @@ public class CustomMethod implements Validator {
                 for (Method method : cls.getMethods()) {
                     if ("valid".equals(method.getName())) {
                         try{
-                            method.invoke(cls.newInstance(),field,value);
-                        }catch (InvocationTargetException e){
-                            System.out.println(e.getTargetException());
+                            Boolean result = (Boolean) method.invoke(cls.newInstance(),field,value);
+                            if (!result) {
+                                throw new ValidatorException(customValidator.message().isBlank() ? "Field '" + field.getName() + "' khong hop le." : customValidator.message());
+                            }
                         } catch (IllegalAccessException e) {
                             e.printStackTrace();
                         } catch (InstantiationException e) {
+                            e.printStackTrace();
+                        } catch (InvocationTargetException e) {
                             e.printStackTrace();
                         }
                         break;

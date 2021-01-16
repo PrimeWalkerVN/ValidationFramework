@@ -17,7 +17,7 @@ public class PrimeNumberValidation implements Validator {
         int number = (int)value;
         for (int i = 2; i <= (int)Math.sqrt(number); i++) {
             if (number % i == 0) {
-                throw new ValidatorException("Field '" + field.getName() + "' is not a prime number");
+                return false;
             }
         }
         return true;

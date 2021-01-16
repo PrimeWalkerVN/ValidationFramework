@@ -38,7 +38,7 @@ abstract class RangeComparator implements Validator {
                 RangeValue range = (RangeValue) annotation;
                 if (min(value, range.min()) && max(value, range.max())) return true;
                 else
-                    throw new ValidatorException(!range.message().isBlank() ? range.message() : "Field " + field.getName() + " is not in range value");
+                    throw new ValidatorException(!range.message().isBlank() ? range.message() : "Field '" + field.getName() + "' is not in range value");
             }
            continue;
         }
