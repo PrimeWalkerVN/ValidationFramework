@@ -9,9 +9,11 @@ import com.validation.methods.CustomMethod;
 import java.lang.reflect.Field;
 
 
-public class Test {
 
+
+public class Test {
     @NotEmpty
+    @RangeLength(min = 5)
     private String name="";
 
     @DateFormat(format="DD/MM/YY")
@@ -27,6 +29,8 @@ public class Test {
     @Regex(pattern = "[0-9]", message = "hihihi")
     private String regex = "aggg";
 
+    @RangeValue(min = 20, max = 100)
+    private double age = 99;
 
 
 
@@ -69,6 +73,10 @@ public class Test {
 
     public String getRegex() {
         return regex;
+    }
+
+    public double getAge() {
+        return age;
     }
 
 }
