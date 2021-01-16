@@ -22,9 +22,9 @@ public class Main {
 
         for (String key : errors.keySet())
         {
-            System.out.println("Field Name : " + key);
+            System.out.println("Field " + key + " : ");
             for (ValidatorException ve : errors.get(key)) {
-                System.out.println("Error : " + ve.getMessage());
+                System.out.println("\tError : " + ve.getMessage());
             }
         }
 
@@ -33,7 +33,7 @@ public class Main {
 
         System.out.println("Error of regex");
         for (String str : errorOfRegex) {
-            System.out.println("Error : " + str);
+            System.out.println("\tError : " + str);
         }
 
 
