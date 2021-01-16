@@ -1,28 +1,41 @@
 package com.validation;
 
+
 import com.validation.annotations.*;
+import com.validation.customs.PrimeNumberValidation;
 
 
 public class Test {
     @NotEmpty
     @RangeLength(min = 5)
-    private String name="";
+    private final String name = "";
 
-    @DateFormat(format="DD/MM/YY")
-    private String date = "12/02/2020";
+    @DateFormat(format = "DD/MM/YY")
+    private final String date = "12/02/2020";
 
 
     @IsNumber
-    private String cac = null;
+    private final String cac = null;
 
     @IsNumber
     @IsBlank
-    private String cac2 = "";
+    private final String cac2 = "";
     @Regex(pattern = "[0-9]", message = "hihihi")
-    private String regex = "aggg";
+    private final String regex = "aggg";
 
     @RangeValue(min = 20, max = 100)
-    private double age = 99;
+    private final double age = 99;
+    @IsNumber
+    @CustomValidation(validatedBy = PrimeNumberValidation.class)
+    private int soNguyenTo = 98;
+
+    public int getSoNguyenTo() {
+        return soNguyenTo;
+    }
+
+    public void setSoNguyenTo(int soNguyenTo) {
+        this.soNguyenTo = soNguyenTo;
+    }
 
     public String getName() {
         return name;
@@ -39,6 +52,10 @@ public class Test {
     public String getCac2() {
         return cac2;
     }
+
+
+    //    @NotEmpty
+//    private String address;
 
     public String getRegex() {
         return regex;

@@ -4,9 +4,9 @@ import java.lang.reflect.Field;
 import java.util.*;
 
 public class ObjectException {
-   private Object object;
+   private final Object object;
 
-   private Map<Field, List<ValidatorException>> errors = new HashMap<>();
+   private final Map<Field, List<ValidatorException>> errors = new HashMap<>();
 
    ObjectException(Object o){
        this.object = o;

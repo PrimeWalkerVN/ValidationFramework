@@ -6,10 +6,10 @@ import com.validation.annotations.NotEmpty;
 public class Test2 {
 
     @NotEmpty
-    private String name="";
+    private final String name="";
 
     @DateFormat(format="DD/MM/YY")
-    private String date = "12/02/2020";
+    private final String date = "12/02/2020";
 
     public String getName() {
         return name;

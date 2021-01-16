@@ -32,6 +32,7 @@ public class DateMethod implements Validator {
             int convertYear = -1;
 
             for (int i = 0; i < parseFormat.length; i++){
+
                 switch (parseFormat[i]){
                     case "MM":
                         try {
@@ -115,6 +116,7 @@ public class DateMethod implements Validator {
                     default:
                         throw new IllegalStateException("Unexpected value: " + parseFormat[i]);
                 }
+
             }
 
             if(convertDay * convertMonth * convertYear < 0) {

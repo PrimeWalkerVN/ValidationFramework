@@ -4,6 +4,7 @@ import com.validation.annotations.*;
 import com.validation.exceptions.ResponseException;
 import com.validation.exceptions.ValidationException;
 import com.validation.exceptions.ValidatorException;
+import com.validation.methods.CustomMethod;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -28,6 +29,7 @@ public class AnnotationValidation implements ValidationStrategy{
         validatorMap.put(Regex.class, ValidatorFactory.getRegexMethod());
         validatorMap.put(RangeLength.class, ValidatorFactory.getRangeLengthMethod());
         validatorMap.put(RangeValue.class, ValidatorFactory.getRangeValueMethod());
+        validatorMap.put(CustomValidation.class, ValidatorFactory.getCustomMethod());
     }
 
     /**
@@ -55,6 +57,8 @@ public class AnnotationValidation implements ValidationStrategy{
                     }catch (ValidatorException e){
                         System.out.println(e);
                         validationErrors.addError(object, field, e);
+                    } catch (NoSuchMethodException | InstantiationException | ClassNotFoundException e) {
+                        e.printStackTrace();
                     }
                 }catch (ValidatorException | IllegalAccessException | InvocationTargetException e){
                     System.out.println(e);
