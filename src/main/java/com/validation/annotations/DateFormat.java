@@ -12,5 +12,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.FIELD)
 public @interface DateFormat {
     String format();
+    String message() default "";
 }
 
