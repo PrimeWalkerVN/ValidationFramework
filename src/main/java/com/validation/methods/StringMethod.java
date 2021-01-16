@@ -10,4 +10,9 @@ public class StringMethod implements Validator {
     public boolean valid(Field field, Object value) throws ValidatorException {
         return false;
     }
+
+    @Override
+    public boolean valid(Object value) {
+        return false;
+    }
 }

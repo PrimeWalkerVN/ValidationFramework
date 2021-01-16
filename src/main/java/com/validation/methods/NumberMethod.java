@@ -11,16 +11,28 @@ public class NumberMethod implements Validator {
     @Override
     public boolean valid(Field field, Object value) throws ValidatorException {
 
-        if (value == null) {
-            throw new ValidatorException("Field '" + field.getName() + "' is not number.");
+        try {
+            valid(value);
+        }catch (ValidatorException e){
+            throw new ValidatorException("Field '" + field.getName() + "' " + e.getMessage());
         }
 
+        return true;
+
+
+    }
+
+    @Override
+    public boolean valid(Object value) {
+        if (value == null) {
+            throw new ValidatorException("is not number.");
+        }
         try {
-            Number num = NumberFormat.getInstance().parse(value.toString());
+            NumberFormat.getInstance().parse(value.toString());
             return true;
         }
         catch (ParseException e) {
-            throw new ValidatorException("Field '" + field.getName() + "' is not number.");
+            throw new ValidatorException("is not number");
         }
     }
 }

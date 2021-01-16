@@ -22,4 +22,9 @@ public class PrimeNumberValidation implements Validator {
         }
         return true;
     }
+
+    @Override
+    public boolean valid(Object value) {
+        return false;
+    }
 }

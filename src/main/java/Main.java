@@ -1,7 +1,4 @@
-import com.validation.AnnotationValidation;
-import com.validation.Test;
-import com.validation.Test2;
-import com.validation.Validation;
+import com.validation.*;
 import com.validation.annotations.NotEmpty;
 import com.validation.exceptions.ResponseException;
 
@@ -11,6 +8,7 @@ public class Main {
         validation.setValidationStrategy(new AnnotationValidation());
         Test test = new Test();
         Test2 test2 = new Test2();
+        Test3 test3 = new Test3();
         ResponseException err = validation.validate(test);
 
     }

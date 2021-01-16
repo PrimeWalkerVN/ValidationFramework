@@ -146,4 +146,9 @@ public class DateMethod implements Validator {
             throw new ValidatorException("Can't find pattern");
         }
     }
+
+    @Override
+    public boolean valid(Object value) {
+        return false;
+    }
 }
