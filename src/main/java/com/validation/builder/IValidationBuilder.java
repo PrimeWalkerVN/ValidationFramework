@@ -9,6 +9,7 @@ public interface IValidationBuilder {
     IValidationBuilder isNumber();
     IValidationBuilder notEmpty();
     IValidationBuilder notBlank();
+    IValidationBuilder isAlpha();
     IValidationBuilder nonNull();
     IValidationBuilder maxValue(int value);
     IValidationBuilder minValue(int value);

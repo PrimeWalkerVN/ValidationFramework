@@ -14,6 +14,7 @@ public class ValidationBuilder implements IValidationBuilder {
     private Validator notBlank;
     private Validator nonNull;
     private Validator maxValue;
+    private Validator isAlpha;
     private Validator minValue;
     private Validator maxLength;
     private Validator minLength;
@@ -36,6 +37,12 @@ public class ValidationBuilder implements IValidationBuilder {
     @Override
     public IValidationBuilder notBlank() {
         this.notBlank = new BlankMethod();
+        return this;
+    }
+
+    @Override
+    public IValidationBuilder isAlpha() {
+        this.isAlpha = new IsAlphaMethod();
         return this;
     }
 
@@ -83,6 +90,6 @@ public class ValidationBuilder implements IValidationBuilder {
 
     @Override
     public ObjectValidation build() {
-        return new ObjectValidation(this.isNumber, this.notEmpty, this.notBlank, this.nonNull, this.maxValue, this.minValue, this.maxLength, this.minLength, this.matchRegex, this.custom);
+        return new ObjectValidation(this.isNumber, this.notEmpty, this.notBlank, this.nonNull, this.maxValue, this.minValue, this.maxLength, this.minLength, this.matchRegex, this.custom, this.isAlpha);
     }
 }

@@ -11,6 +11,7 @@ public class ObjectValidation implements ValidationStrategy {
     private Validator isNumber;
     private Validator notEmpty;
     private Validator notBlank;
+    private Validator isAlpha;
     private Validator nonNull;
     private Validator maxValue;
     private Validator minValue;
@@ -24,7 +25,7 @@ public class ObjectValidation implements ValidationStrategy {
     public ObjectValidation() {
     }
 
-    public ObjectValidation(Validator isNumber, Validator notEmpty, Validator notBlank, Validator nonNull, Validator maxValue, Validator minValue, Validator maxLength, Validator minLength, Validator matchRegex, Validator custom) {
+    public ObjectValidation(Validator isNumber, Validator notEmpty, Validator notBlank, Validator nonNull, Validator maxValue, Validator minValue, Validator maxLength, Validator minLength, Validator matchRegex, Validator custom, Validator isAlpha) {
         this.isNumber = isNumber;
         this.notEmpty = notEmpty;
         this.notBlank = notBlank;
@@ -34,6 +35,7 @@ public class ObjectValidation implements ValidationStrategy {
         this.maxLength = maxLength;
         this.minLength = minLength;
         this.matchRegex = matchRegex;
+        this.isAlpha = isAlpha;
         this.custom = custom;
     }
 
@@ -108,6 +110,10 @@ public class ObjectValidation implements ValidationStrategy {
 
     public Validator getMatchRegex() {
         return matchRegex;
+    }
+
+    public Validator getIsAlpha() {
+        return isAlpha;
     }
 
     public Validator getCustom() {

@@ -37,9 +37,8 @@ public class Main {
         }
 
         // builder
-        ObjectValidation objectValidation = new ValidationBuilder().maxLength(5)
-                .minLength(1).notEmpty().build();
-        String a = "";
+        ObjectValidation objectValidation = new ValidationBuilder().isAlpha().build();
+        String a = "aaaaaaaa";
         validation.setValidationStrategy(objectValidation);
         ResponseException res = validation.validate(a);
 
@@ -58,7 +57,6 @@ public class Main {
         errField2.forEach(er -> {
             System.out.println("ErrorBuilder : " + er);
         });
-
     }
 
 }
