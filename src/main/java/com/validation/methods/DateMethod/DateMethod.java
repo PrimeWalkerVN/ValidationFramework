@@ -11,6 +11,7 @@ public class DateMethod implements Validator {
 
     private String pattern = "";
 
+
     public boolean validDateElements(int day, int month, int year) {
         int[] daysOfMonths = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
         if(day * month * year < 0) {
@@ -38,6 +39,7 @@ public class DateMethod implements Validator {
         return true;
     }
 
+
     public boolean valid(Field field, Object value) throws ValidatorException {
         Annotation[] annotations = field.getDeclaredAnnotations();
         if (annotations.length > 0){
@@ -60,9 +62,7 @@ public class DateMethod implements Validator {
         Integer convertDay = -1;
         Integer convertMonth = -1;
         Integer convertYear = -1;
-
         Integer[] parsedResults;
-
         DateParser parser = new DateParser();
         parsedResults = parser.parse(value, this.pattern);
 

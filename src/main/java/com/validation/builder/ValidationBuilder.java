@@ -3,6 +3,7 @@ package com.validation.builder;
 import com.validation.ObjectValidation;
 import com.validation.Validator;
 import com.validation.methods.*;
+import com.validation.methods.DateMethod.DateMethod;
 import com.validation.methods.ObjectMethod.*;
 
 import java.util.regex.Pattern;
@@ -20,6 +21,7 @@ public class ValidationBuilder implements IValidationBuilder {
     private Validator minLength;
     private Validator matchRegex;
     private Validator custom;
+    private Validator dateFormat;
 
 
     @Override
@@ -77,6 +79,14 @@ public class ValidationBuilder implements IValidationBuilder {
     }
 
     @Override
+    public IValidationBuilder dateFormat(String pattern) {
+        DateMethod method = new DateMethod();
+        method.setPattern(pattern);
+        this.dateFormat = method;
+        return this;
+    }
+
+    @Override
     public IValidationBuilder matchRegex(Pattern pattern) {
         this.matchRegex = new RegexMethod(pattern);
         return this;
@@ -90,6 +100,6 @@ public class ValidationBuilder implements IValidationBuilder {
 
     @Override
     public ObjectValidation build() {
-        return new ObjectValidation(this.isNumber, this.notEmpty, this.notBlank, this.nonNull, this.maxValue, this.minValue, this.maxLength, this.minLength, this.matchRegex, this.custom, this.isAlpha);
+        return new ObjectValidation(this.isNumber, this.notEmpty, this.notBlank, this.nonNull, this.maxValue, this.minValue, this.maxLength, this.minLength, this.matchRegex, this.custom, this.isAlpha, this.dateFormat);
     }
 }

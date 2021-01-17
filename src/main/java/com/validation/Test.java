@@ -15,12 +15,12 @@ public class Test {
 
 
     @IsNumber
-    private final String cac = null;
+    private final String number = null;
 
     @IsNumber
     @IsBlank
-    private final String cac2 = "";
-    @Regex(pattern = "[0-9]", message = "hihihi")
+    private final String number2 = "";
+    @Regex(pattern = "[0-9]")
     private final String regex = "aggg";
 
     @RangeValue(min = 20, max = 100)
@@ -46,15 +46,13 @@ public class Test {
         return date;
     }
 
-    public String getCac() {
-        return cac;
+    public String getNumber() {
+        return number;
     }
 
-    public String getCac2() {
-        return cac2;
+    public String getNumber2() {
+        return number2;
     }
-
-
     //    @NotEmpty
 //    private String address;
 
