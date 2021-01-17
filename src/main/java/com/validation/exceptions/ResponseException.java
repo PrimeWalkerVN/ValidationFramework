@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 public class ResponseException {
     private ObjectException objectException;
+    private BuilderException builderException;
 
 
     public boolean hasError() {
@@ -34,5 +35,13 @@ public class ResponseException {
 
     public void setObjectException(ObjectException objectException) {
         this.objectException = objectException;
+    }
+
+    public List<String> getErrorBuilderInString(){
+        return builderException.getErrors().stream().map(Throwable::getMessage).collect(Collectors.toList());
+    }
+
+    public void setBuilderException(BuilderException builderException) {
+        this.builderException = builderException;
     }
 }

@@ -1,6 +1,7 @@
 import com.validation.*;
 import com.validation.annotations.NotEmpty;
 import com.validation.builder.ValidationBuilder;
+import com.validation.customs.PrimeNumberValidation;
 import com.validation.exceptions.ResponseException;
 import com.validation.exceptions.ValidatorException;
 
@@ -23,7 +24,6 @@ public class Main {
 
         for (String key : errors.keySet())
         {
-            System.out.println("Field " + key + " : ");
             for (ValidatorException ve : errors.get(key)) {
                 System.out.println("\tError : " + ve.getMessage());
             }
@@ -41,7 +41,24 @@ public class Main {
                 .minLength(1).notEmpty().build();
         String a = "";
         validation.setValidationStrategy(objectValidation);
-        validation.validate(a);
+        ResponseException res = validation.validate(a);
+
+        List<String> errField = res.getErrorBuilderInString();
+
+        errField.forEach(e -> {
+            System.out.println("ErrorBuilder : " + e);
+        });
+
+        ObjectValidation testCustom = new ValidationBuilder().custom(new PrimeNumberValidation()).build();
+        validation.setValidationStrategy(testCustom);
+        ResponseException res2 = validation.validate(9);
+
+        List<String> errField2 = res2.getErrorBuilderInString();
+
+        errField2.forEach(er -> {
+            System.out.println("ErrorBuilder : " + er);
+        });
+
     }
 
 }

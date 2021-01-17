@@ -3,10 +3,7 @@ package com.validation.builder;
 import com.validation.ObjectValidation;
 import com.validation.Validator;
 import com.validation.methods.*;
-import com.validation.methods.ObjectMethod.MaxLengthMethod;
-import com.validation.methods.ObjectMethod.MaxValueMethod;
-import com.validation.methods.ObjectMethod.MinLengthMethod;
-import com.validation.methods.ObjectMethod.MinValueMethod;
+import com.validation.methods.ObjectMethod.*;
 
 import java.util.regex.Pattern;
 
@@ -21,6 +18,7 @@ public class ValidationBuilder implements IValidationBuilder {
     private Validator maxLength;
     private Validator minLength;
     private Validator matchRegex;
+    private Validator custom;
 
 
     @Override
@@ -78,7 +76,13 @@ public class ValidationBuilder implements IValidationBuilder {
     }
 
     @Override
+    public IValidationBuilder custom(Validator validator) {
+        this.custom = new CustomBuilderMethod(validator);
+        return this;
+    }
+
+    @Override
     public ObjectValidation build() {
-        return new ObjectValidation(this.isNumber, this.notEmpty, this.notBlank, this.nonNull, this.maxValue, this.minValue, this.maxLength, this.minLength, this.matchRegex);
+        return new ObjectValidation(this.isNumber, this.notEmpty, this.notBlank, this.nonNull, this.maxValue, this.minValue, this.maxLength, this.minLength, this.matchRegex, this.custom);
     }
 }

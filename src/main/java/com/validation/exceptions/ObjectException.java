@@ -8,7 +8,7 @@ public class ObjectException {
 
    private final Map<String, List<ValidatorException>> errors = new HashMap<>();
 
-   ObjectException(Object o){
+   public ObjectException(Object o){
        this.object = o;
 
    }

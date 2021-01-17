@@ -1,6 +1,7 @@
 package com.validation.builder;
 
 import com.validation.ObjectValidation;
+import com.validation.Validator;
 
 import java.util.regex.Pattern;
 
@@ -14,6 +15,7 @@ public interface IValidationBuilder {
     IValidationBuilder maxLength(int value);
     IValidationBuilder minLength(int value);
     IValidationBuilder matchRegex(Pattern pattern);
+    IValidationBuilder custom(Validator validator);
 
     ObjectValidation build();
 }

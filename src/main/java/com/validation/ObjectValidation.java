@@ -1,8 +1,6 @@
 package com.validation;
 
-import com.validation.exceptions.ResponseException;
-import com.validation.exceptions.ValidationException;
-import com.validation.exceptions.ValidatorException;
+import com.validation.exceptions.*;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -19,14 +17,14 @@ public class ObjectValidation implements ValidationStrategy {
     private Validator maxLength;
     private Validator minLength;
     private Validator matchRegex;
+    private Validator custom;
 
-    private ValidationException validationErrors;
+    private BuilderException builderErrors = new BuilderException();
 
     public ObjectValidation() {
-        this.validationErrors = new ValidationException();
     }
 
-    public ObjectValidation(Validator isNumber, Validator notEmpty, Validator notBlank, Validator nonNull, Validator maxValue, Validator minValue, Validator maxLength, Validator minLength, Validator matchRegex) {
+    public ObjectValidation(Validator isNumber, Validator notEmpty, Validator notBlank, Validator nonNull, Validator maxValue, Validator minValue, Validator maxLength, Validator minLength, Validator matchRegex, Validator custom) {
         this.isNumber = isNumber;
         this.notEmpty = notEmpty;
         this.notBlank = notBlank;
@@ -36,12 +34,12 @@ public class ObjectValidation implements ValidationStrategy {
         this.maxLength = maxLength;
         this.minLength = minLength;
         this.matchRegex = matchRegex;
+        this.custom = custom;
     }
 
 
     @Override
     public ResponseException validate(Object object) {
-//        validationErrors.addInstance(object);
         ObjectValidation obj = new ObjectValidation();
         Field []fields = obj.getClass().getDeclaredFields();
         for (Field field: fields) {
@@ -51,8 +49,7 @@ public class ObjectValidation implements ValidationStrategy {
                     value.valid(object);
                 }
             }catch (ValidatorException e) {
-                System.out.println(e);
-//                validationErrors.addError(object, field, e);
+                builderErrors.addError(e);
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             } catch (InvocationTargetException e) {
@@ -61,8 +58,9 @@ public class ObjectValidation implements ValidationStrategy {
 //                System.out.println(e);
             }
         }
-//        return validationErrors.getErrors(object);
-        return null;
+        ResponseException responseException = new ResponseException();
+        responseException.setBuilderException(this.builderErrors);
+        return responseException;
     }
 
     public Method getMethodGet(Object object, Field field) {
@@ -112,7 +110,7 @@ public class ObjectValidation implements ValidationStrategy {
         return matchRegex;
     }
 
-    public ValidationException getValidationErrors() {
-        return validationErrors;
+    public Validator getCustom() {
+        return custom;
     }
 }
