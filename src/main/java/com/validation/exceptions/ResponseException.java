@@ -14,6 +14,10 @@ public class ResponseException {
         return objectException.hasError();
     }
 
+    public boolean isFieldError(String field) {
+        return !objectException.getErrors(field).isEmpty();
+    }
+
     public List<ValidatorException> getError(String field) {
         return objectException.getErrors(field);
     }
