@@ -1,55 +1,31 @@
-package com.validation.methods;
+package com.validation.methods.DateMethod;
 
-import com.validation.Validator;
-import com.validation.annotations.DateFormat;
 import com.validation.exceptions.ValidatorException;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
+public class DateParser {
 
-public class DateMethod implements Validator {
+    public DateParser() {}
 
-    private String pattern = "";
-
-    @Override
-    public boolean valid(Field field, Object value) throws ValidatorException {
-        Annotation[] annotations = field.getDeclaredAnnotations();
-        if (annotations.length > 0){
-            DateFormat dateFormat = (DateFormat) annotations[0];
-            setPattern(dateFormat.format());
-            try {
-                valid(value);
-            }catch (ValidatorException e){
-                throw new ValidatorException(!dateFormat.message().isBlank() ? dateFormat.message() : "Field '" + field.getName() + "' " + e.getMessage());
-            }
-        }else {
-            throw new ValidatorException("Can't find pattern");
-        }
-        return true;
-    }
-
-    @Override
-    public boolean valid(Object value) {
+    public Integer[] parse(Object value, String pattern) throws ValidatorException {
 
         String seperator = "[^\\da-zA-Z]";
+
         String letters = "[\\da-zA-Z]";
+
         String[] monthsArray = {"January", "February", "March", "April",
                 "May", "June", "July", "August", "September", "October", "November", "December"};
-        int[] daysOfMonths = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-        String formatSeperator = String.join("", this.pattern.split(letters));
+
+        String formatSeperator = String.join("", pattern.split(letters));
         String valueSeperator = String.join("", value.toString().split(letters));
-        if(!formatSeperator.equals(valueSeperator)) {
-            throw new ValidatorException("is invalid date");
-        }
+
         String[] parsedDate = value.toString().split(seperator);
-        String[] parseFormat = this.pattern.split(seperator);
+        String[] parseFormat = pattern.split(seperator);
 
         int convertDay = -1;
         int convertMonth = -1;
         int convertYear = -1;
 
         for (int i = 0; i < parseFormat.length; i++){
-
             switch (parseFormat[i]){
                 case "MM":
                     try {
@@ -131,41 +107,10 @@ public class DateMethod implements Validator {
                     }
                     break;
                 default:
-                    throw new IllegalStateException("Unexpected value: " + parseFormat[i]);
+                    break;
             }
 
         }
-
-        if(convertDay * convertMonth * convertYear < 0) {
-            throw new ValidatorException("is invalid date");
-        } else {
-            if(convertYear < 0) {
-                throw new ValidatorException("is invalid date");
-            }
-            if(convertMonth < 1 || convertMonth > 12) {
-                throw new ValidatorException("is invalid date");
-            }
-            if(convertYear % 400 == 0 || (convertYear%4 == 0 && convertYear%100 != 0)) {
-                if(convertMonth == 2 && convertDay > 29) {
-                    throw new ValidatorException("is invalid date");
-                }
-            } else {
-                if(convertMonth == 2 && convertDay > 28) {
-                    throw new ValidatorException("is invalid date");
-                }
-            }
-            if(convertMonth != 2 && convertDay > daysOfMonths[convertMonth-1]){
-                throw new ValidatorException("is invalid date");
-            }
-        }
-        return true;
-    }
-
-    public String getPattern() {
-        return this.pattern;
-    }
-
-    public void setPattern(String newPattern) {
-        this.pattern = newPattern;
+        return new Integer[]{convertDay, convertMonth, convertYear};
     }
 }
