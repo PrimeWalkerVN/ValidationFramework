@@ -20,7 +20,7 @@ public class ObjectValidation implements ValidationStrategy {
     private Validator matchRegex;
     private Validator custom;
 
-    private BuilderException builderErrors = new BuilderException();
+    private final BuilderException builderErrors = new BuilderException();
 
     public ObjectValidation() {
     }

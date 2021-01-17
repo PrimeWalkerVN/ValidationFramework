@@ -15,11 +15,19 @@ public class Test {
 
 
     @IsNumber
-    private final String cac = null;
+    private final String asd = null;
+
+    public String getAsd() {
+        return asd;
+    }
+
+    public String getAsd2() {
+        return asd2;
+    }
 
     @IsNumber
     @IsBlank
-    private final String cac2 = "";
+    private final String asd2 = "";
     @Regex(pattern = "[0-9]", message = "hihihi")
     private final String regex = "aggg";
 
@@ -46,13 +54,6 @@ public class Test {
         return date;
     }
 
-    public String getCac() {
-        return cac;
-    }
-
-    public String getCac2() {
-        return cac2;
-    }
 
 
     //    @NotEmpty
