@@ -31,7 +31,7 @@ public class CustomMethod implements Validator {
                         try{
                             Boolean result = (Boolean) method.invoke(cls.newInstance(),field,value);
                             if (!result) {
-                                throw new ValidatorException(customValidator.message().isBlank() ? "Field '" + field.getName() + "' khong hop le." : customValidator.message());
+                                throw new ValidatorException(customValidator.message().isBlank() ? "Field '" + field.getName() + "' is invalid" : customValidator.message());
                             }
                         } catch (IllegalAccessException e) {
                             e.printStackTrace();

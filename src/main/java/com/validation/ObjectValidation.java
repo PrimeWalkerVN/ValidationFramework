@@ -19,13 +19,14 @@ public class ObjectValidation implements ValidationStrategy {
     private Validator minLength;
     private Validator matchRegex;
     private Validator custom;
+    private Validator dateFormat;
 
     private BuilderException builderErrors = new BuilderException();
 
     public ObjectValidation() {
     }
 
-    public ObjectValidation(Validator isNumber, Validator notEmpty, Validator notBlank, Validator nonNull, Validator maxValue, Validator minValue, Validator maxLength, Validator minLength, Validator matchRegex, Validator custom, Validator isAlpha) {
+    public ObjectValidation(Validator isNumber, Validator notEmpty, Validator notBlank, Validator nonNull, Validator maxValue, Validator minValue, Validator maxLength, Validator minLength, Validator matchRegex, Validator custom, Validator isAlpha, Validator dateFormat) {
         this.isNumber = isNumber;
         this.notEmpty = notEmpty;
         this.notBlank = notBlank;
@@ -37,6 +38,7 @@ public class ObjectValidation implements ValidationStrategy {
         this.matchRegex = matchRegex;
         this.isAlpha = isAlpha;
         this.custom = custom;
+        this.dateFormat = dateFormat;
     }
 
 
@@ -119,4 +121,6 @@ public class ObjectValidation implements ValidationStrategy {
     public Validator getCustom() {
         return custom;
     }
+
+    public Validator getDateFormat() {return dateFormat;}
 }

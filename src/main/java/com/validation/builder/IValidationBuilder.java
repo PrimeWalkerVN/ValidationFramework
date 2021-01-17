@@ -15,6 +15,7 @@ public interface IValidationBuilder {
     IValidationBuilder minValue(int value);
     IValidationBuilder maxLength(int value);
     IValidationBuilder minLength(int value);
+    IValidationBuilder dateFormat(String pattern);
     IValidationBuilder matchRegex(Pattern pattern);
     IValidationBuilder custom(Validator validator);
 

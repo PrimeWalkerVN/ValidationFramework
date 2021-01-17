@@ -10,6 +10,6 @@ import java.lang.annotation.Target;
 public @interface Regex {
     String pattern();
 
-    String message();
+    String message() default "";
 
 }
