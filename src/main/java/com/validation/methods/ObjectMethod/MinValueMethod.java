@@ -17,7 +17,7 @@ public class MinValueMethod implements Validator {
         if(min(value, minValue)){
             return true;
         }else {
-            throw new ValidatorException("is less than min value");
+            throw new ValidatorException("is less than min value " + minValue);
         }
     }
 

@@ -17,7 +17,7 @@ public class MinLengthMethod implements Validator {
         if(min(value, minLength)){
             return true;
         }else {
-            throw new ValidatorException("is less than min length");
+            throw new ValidatorException("is less than min length " + minLength );
         }
     }
 

@@ -17,7 +17,7 @@ public class MaxValueMethod implements Validator {
         if(max(value,maxValue)){
             return true;
         }else {
-            throw new ValidatorException("is greater than max value");
+            throw new ValidatorException("is greater than max value " + maxValue);
         }
     }
 
