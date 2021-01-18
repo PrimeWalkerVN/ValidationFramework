@@ -18,6 +18,10 @@ public class DateParser {
         String formatSeperator = String.join("", pattern.split(letters));
         String valueSeperator = String.join("", value.toString().split(letters));
 
+        if(!formatSeperator.equals(valueSeperator)){
+            throw new ValidatorException("is invalid date");
+        }
+
         String[] parsedDate = value.toString().split(seperator);
         String[] parseFormat = pattern.split(seperator);
 
