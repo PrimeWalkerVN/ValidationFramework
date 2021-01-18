@@ -17,7 +17,7 @@ public class MaxLengthMethod implements Validator {
         if(max(value,maxLength)){
             return true;
         }else {
-                throw new ValidatorException("is greater than max length");
+                throw new ValidatorException("is greater than max length "+ maxLength);
         }
     }
 
